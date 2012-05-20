@@ -24,6 +24,8 @@
         url: '/albums'
     });
 
+    window.library = new Albums();
+
     window.AlbumView = Backbone.View.extend({
         tagName: 'li',
         className: 'album',
