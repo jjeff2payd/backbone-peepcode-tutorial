@@ -42,4 +42,36 @@
         }
     });
 
+    window.LibraryAlbumView = AlbumView.extend({
+
+    });
+
+    window.LibraryView = Backbone.View.extend({
+        tagName: 'section',
+        className: 'library',
+
+        initialize: function() {
+            _.bindAll(this, 'render');
+            this.template = _.template($('#library-template').html());
+            this.collection.bind('reset', this.render);
+        },
+
+        render: function() {
+            var $albums;
+            var collection = this.collection;
+
+            $(this.el).html(this.template({}));
+            $albums = this.$('.albums');
+            collection.each(function(album) {
+                var view = new LibraryAlbumView({
+                    model: album,
+                    collection: collection
+                });
+                $albums.append(view.render().el);
+            });
+            return this;
+        }
+
+    });
+
 })(jQuery);
