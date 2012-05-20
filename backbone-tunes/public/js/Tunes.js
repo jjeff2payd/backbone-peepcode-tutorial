@@ -3,6 +3,9 @@
     window.Album = Backbone.Model.extend({});
 
     window.AlbumView = Backbone.View.extend({
+        tagName: 'li',
+        className: 'album',
+
         initialize: function() {
             this.template = _.template($('#album-template').html());
         },
